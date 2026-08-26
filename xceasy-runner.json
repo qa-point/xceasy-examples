@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "shard",
+  "retry_missing_tests": true,
+  "max_recovery_attempts": 2,
+  "require_all_devices": true,
+  "workspace": "XCEasyExamples.xcworkspace",
+  "scheme": "UIKitExample",
+  "test_target": "UIKitExampleUITests",
+  "test_plan": "UIKitExampleTestPlan",
+  "test_configuration": "English",
+  "runner_bundle_id": "com.qa-point.xceasy-examples.uikit-tests.xctrunner",
+  "output_directory": "runner-artifacts",
+  "devices": [
+    {
+      "type": "simulator",
+      "name": "iPhone 17 Pro"
+    }
+  ],
+  "state_isolation": "app_reset_hook",
+  "selection": {
+    "include_any": [],
+    "include_all": [],
+    "exclude": ["FailureShowcase"]
+  },
+  "performance_environment_key": "ios-simulator|debug"
+}

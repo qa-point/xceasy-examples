@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Xcode user state and build output
+DerivedData/
+Derived/
+*.xcresult
+*.xcuserstate
+xcuserdata/
+
+# Tuist-generated projects and workspaces
+*.xcodeproj/
+*.xcworkspace/
+
+# Test reports and diagnostics
+allure-results/
+allure-report/
+runner-artifacts/
+xceasy-runner-artifacts/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Local mise state
+.mise.local.toml

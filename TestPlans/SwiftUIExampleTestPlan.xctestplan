@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "id": "410FA7BD-773A-435B-AEB2-CF69DA1DF7F5",
+      "name": "English",
+      "options": {"language": "en", "region": "US"}
+    }
+  ],
+  "defaultOptions": {
+    "codeCoverage": false,
+    "targetForVariableExpansion": {
+      "containerPath": "container:XCEasyExamples.xcodeproj",
+      "identifier": "DC6ED1EB72A9F6D998F49F7D",
+      "name": "SwiftUIExample"
+    }
+  },
+  "testTargets": [
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:XCEasyExamples.xcodeproj",
+        "identifier": "C39594B5C61B798906F48A58",
+        "name": "SwiftUIExampleUITests"
+      }
+    }
+  ],
+  "version": 1
+}

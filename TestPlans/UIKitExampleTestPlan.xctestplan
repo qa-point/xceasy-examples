@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "id": "D33E54CE-3597-42D1-A748-1402058F5943",
+      "name": "English",
+      "options": {"language": "en", "region": "US"}
+    }
+  ],
+  "defaultOptions": {
+    "codeCoverage": false,
+    "targetForVariableExpansion": {
+      "containerPath": "container:XCEasyExamples.xcodeproj",
+      "identifier": "4C1CDE5A567CBC5DCE02B0BA",
+      "name": "UIKitExample"
+    }
+  },
+  "testTargets": [
+    {
+      "parallelizable": false,
+      "target": {
+        "containerPath": "container:XCEasyExamples.xcodeproj",
+        "identifier": "7E11D9D6EE5136F29A7075F6",
+        "name": "UIKitExampleUITests"
+      }
+    }
+  ],
+  "version": 1
+}
