@@ -27,6 +27,29 @@ resolve_xcode_developer_dir() {
     exit 69
 }
 
+# Ensures simulator services are ready before a test launch or container export.
+ensure_simulator_booted() {
+    simulator_id=$1
+    simulator_state=$(xcrun simctl list devices -j | jq -r --arg id "$simulator_id" '.devices[][] | select(.udid == $id) | .state' | head -n 1)
+
+    if [ -z "$simulator_state" ]; then
+        echo "Simulator is unavailable: $simulator_id" >&2
+        return 69
+    fi
+
+    if [ "$simulator_state" != "Booted" ]; then
+        if ! xcrun simctl boot "$simulator_id"; then
+            simulator_state=$(xcrun simctl list devices -j | jq -r --arg id "$simulator_id" '.devices[][] | select(.udid == $id) | .state' | head -n 1)
+            if [ "$simulator_state" != "Booted" ]; then
+                echo "Unable to boot simulator $simulator_id from state $simulator_state" >&2
+                return 69
+            fi
+        fi
+    fi
+
+    xcrun simctl bootstatus "$simulator_id" -b
+}
+
 # Runs the Tuist version pinned by mise.toml. TUIST_BIN remains an explicit CI override.
 run_tuist() {
     if [ -n "${TUIST_BIN:-}" ]; then

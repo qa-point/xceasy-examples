@@ -15,6 +15,7 @@ if [ -z "$device_id" ]; then
     echo "No available iPhone 17 Pro simulator" >&2
     exit 69
 fi
+ensure_simulator_booted "$device_id"
 
 report_dir="$repository_root/allure-results"
 mkdir -p "$report_dir"
@@ -27,6 +28,7 @@ fi
 
 collect_allure_results() {
     runner_bundle_id=$1
+    ensure_simulator_booted "$device_id"
     runner_data_dir=$(xcrun simctl get_app_container "$device_id" "$runner_bundle_id" data)
     runner_report_dir="$runner_data_dir/Library/Caches/allure-results"
 
