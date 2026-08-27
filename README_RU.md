@@ -99,20 +99,17 @@ allure serve allure-results
 
 ## Непрерывная интеграция
 
-Добавленный [CI workflow](.github/workflows/ci.yml) checkout-ит этот репозиторий и соседний приватный
-репозиторий `qa-point/xceasy`, устанавливает закреплённый в `mise.toml` Tuist и запускает
-`./scripts/check-all.sh`. Workflow считается успешным, только если единый отчёт содержит ровно
-46 успешных и 10 намеренно неуспешных showcase-тестов.
+Добавленный [CI workflow](.github/workflows/ci.yml) устанавливает версии из `mise.toml`, запускает
+SwiftLint, генерирует workspace и собирает обе application schemes. Hosted CI намеренно не запускает
+UI-тесты: simulator acceptance и проверка Allure выполняются локально командами `scripts/check.sh`
+или `scripts/check-all.sh` выше. CI-сборка использует релизную версию Swift package XCEasy, поэтому
+token для приватного репозитория ей не нужен.
 
-Перед включением CI создайте repository secret:
+Та же облегчённая проверка локально:
 
 ```bash
-gh secret set XC_EASY_INTEGRATION_TOKEN --repo qa-point/xceasy-examples
+./scripts/check-ci.sh
 ```
-
-Используйте fine-grained token с read-only доступом Contents к `qa-point/xceasy`. Политика организации
-может потребовать одобрения администратора. Не сохраняйте token в файлах, аргументах команд, логах
-или конфигурации Git. Workflow использует его только для checkout приватного репозитория фреймворка.
 
 ## Полезные документы
 

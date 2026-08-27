@@ -101,21 +101,17 @@ allure serve allure-results
 
 ## Continuous integration
 
-The committed [CI workflow](.github/workflows/ci.yml) checks out this repository and the adjacent
-private `qa-point/xceasy` repository, installs the Tuist version pinned by `mise.toml`, and runs
-`./scripts/check-all.sh`. The workflow is successful only when the combined report contains exactly
-46 passed tests and 10 intentionally failed showcase tests.
+The committed [CI workflow](.github/workflows/ci.yml) installs the versions pinned by `mise.toml`,
+runs SwiftLint, generates the workspace, and builds both application schemes. Hosted CI deliberately
+does not run UI tests: use the local `scripts/check.sh` or `scripts/check-all.sh` commands above for
+simulator acceptance and Allure review. The CI build consumes the released XCEasy Swift package, so
+it does not require a private-repository token.
 
-Create the repository secret before enabling CI:
+Run the same lightweight verification locally with:
 
 ```bash
-gh secret set XC_EASY_INTEGRATION_TOKEN --repo qa-point/xceasy-examples
+./scripts/check-ci.sh
 ```
-
-Use a fine-grained token with read-only Contents access to `qa-point/xceasy`. Organization policy
-may require an administrator to approve the token. Never place the token in a file, command-line
-argument, log, or committed configuration. The workflow uses it only to check out the private
-framework repository.
 
 ## More documentation
 

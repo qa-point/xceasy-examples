@@ -14,21 +14,12 @@ concurrency:
 
 jobs:
   verify:
-    name: Verify UIKit and SwiftUI examples
+    name: Build UIKit and SwiftUI examples
     runs-on: macos-15
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
-      - name: Check out examples
+      - name: Check out repository
         uses: actions/checkout@v5
-        with:
-          path: xceasy-examples
-
-      - name: Check out XCEasy
-        uses: actions/checkout@v5
-        with:
-          repository: qa-point/xceasy
-          token: ${{ secrets.XC_EASY_INTEGRATION_TOKEN }}
-          path: xceasy
 
       - name: Select Xcode
         run: |
@@ -38,19 +29,6 @@ jobs:
 
       - name: Install mise
         uses: jdx/mise-action@v3
-        with:
-          working_directory: xceasy-examples
 
-      - name: Run complete example suite
-        working-directory: xceasy-examples
-        env:
-          TUIST_XCEASY_USE_LOCAL_PACKAGE: "1"
-        run: ./scripts/check-all.sh
-
-      - name: Upload combined Allure results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: xceasy-examples/allure-results
-          if-no-files-found: warn
+      - name: Build applications
+        run: ./scripts/check-ci.sh
