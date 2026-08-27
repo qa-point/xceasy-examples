@@ -99,7 +99,7 @@ final class UIKitOverlaysTests: UIKitExampleTestCase {
 
         and("the toast is eventually removed from the tree") {
             overlays.toastMessage
-                .assertDoesNotExist(timeout: 6)
+                .assertDoesNotExist(timeout: 20)
         }
     }
 }

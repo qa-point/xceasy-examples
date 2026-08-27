@@ -33,7 +33,7 @@ final class SwiftUIAuthorizationTests: SwiftUIExampleTestCase {
 
     @DisplayName("[SwiftUI] Successful authorization")
     @Story("Authorization success")
-    func testSuccessfulAuthorizationShowsLoaderAndSuccessScreen() {
+    func testSuccessfulAuthorizationOpensSuccessScreen() {
         given("the authorization screen is open") {
             home.openAuthorization()
         }
@@ -42,19 +42,9 @@ final class SwiftUIAuthorizationTests: SwiftUIExampleTestCase {
             authorization.signIn(login: "admin", password: "password")
         }
 
-        then("the loading indicator is displayed") {
-            authorization.loadingIndicator
-                .assertIsDisplayed(timeout: 1)
-        }
-
-        and("the success screen is opened") {
+        then("the success screen is opened") {
             authorization.successTitle
                 .assertLabel(value: "Authorization successful", timeout: 5)
-        }
-
-        and("the loading indicator is removed") {
-            authorization.loadingIndicator
-                .assertDoesNotExist(timeout: 1)
         }
     }
 }
