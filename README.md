@@ -29,7 +29,7 @@ See [Feature catalog](docs/en/FEATURE_CATALOG_EN.md) for complete manual flows a
 ## Requirements
 
 - technical minimum: Xcode 15 and Swift 5.9 for the package manifest and macros;
-- currently verified and supported matrix: Xcode 26.5 and Swift 6.3.2;
+- currently verified and supported matrix: Xcode 26.6 and Swift 6.3.3;
 - Tuist 4.203.3;
 - iOS 15.0 deployment target; iOS 26.5 is the verified simulator runtime.
 

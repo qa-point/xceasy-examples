@@ -27,7 +27,7 @@ XCEasyExamples
 ## Требования
 
 - технический минимум: Xcode 15 и Swift 5.9 (нужны для package manifest и macros);
-- проверенная и поддерживаемая сейчас matrix: Xcode 26.5 и Swift 6.3.2;
+- проверенная и поддерживаемая сейчас matrix: Xcode 26.6 и Swift 6.3.3;
 - Tuist 4.203.3;
 - deployment target iOS 15.0; проверенный simulator runtime — iOS 26.5.
 
