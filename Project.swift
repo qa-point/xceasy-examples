@@ -25,7 +25,8 @@ let project = Project(
                     "UIImageName": ""
                 ]
             ]),
-            sources: ["UIKitExample/Sources/**"]
+            sources: ["UIKitExample/Sources/**"],
+            resources: ["UIKitExample/Resources/**"]
         ),
         .target(
             name: "UIKitExampleUITests",
@@ -51,7 +52,8 @@ let project = Project(
                     "UIImageName": ""
                 ]
             ]),
-            sources: ["SwiftUIExample/Sources/**"]
+            sources: ["SwiftUIExample/Sources/**"],
+            resources: ["SwiftUIExample/Resources/**"]
         ),
         .target(
             name: "SwiftUIExampleUITests",
