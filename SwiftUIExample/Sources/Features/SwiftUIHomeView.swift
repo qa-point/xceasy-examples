@@ -56,3 +56,13 @@ struct SwiftUIHomeView: View {
         .accessibilityIdentifier(identifier)
     }
 }
+
+#if DEBUG
+struct SwiftUIHomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        SwiftUIScreenPreview {
+            SwiftUIHomeView()
+        }
+    }
+}
+#endif

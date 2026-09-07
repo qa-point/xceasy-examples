@@ -19,6 +19,22 @@ struct SwiftUIProductCatalogView: View {
     @State private var query = ""
     @State private var ascending = true
 
+#if DEBUG
+    enum PreviewState {
+        case populated
+        case empty
+    }
+
+    init(previewState: PreviewState = .populated) {
+        switch previewState {
+        case .populated:
+            break
+        case .empty:
+            _query = State(initialValue: "missing product")
+        }
+    }
+#endif
+
     var body: some View {
         VStack(spacing: 12) {
             Text("Product Catalog")
@@ -68,3 +84,21 @@ struct SwiftUIProductCatalogView: View {
             .sorted { ascending ? $0.price < $1.price : $0.price > $1.price }
     }
 }
+
+#if DEBUG
+struct SwiftUIProductCatalogView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SwiftUIScreenPreview {
+                SwiftUIProductCatalogView()
+            }
+            .previewDisplayName("Populated")
+
+            SwiftUIScreenPreview {
+                SwiftUIProductCatalogView(previewState: .empty)
+            }
+            .previewDisplayName("Empty")
+        }
+    }
+}
+#endif

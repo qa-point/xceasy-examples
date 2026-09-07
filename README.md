@@ -48,7 +48,7 @@ Xcode 15–26.4 may technically build the package, but those versions are not ye
 Generate the workspace:
 
 ```bash
-mise exec -- tuist generate
+./scripts/generate.sh
 ```
 
 In Xcode, select `UIKitExample` or `SwiftUIExample`, choose any available iPhone Simulator, and press Run. Valid Authorization credentials are `admin` / `password`.
@@ -63,10 +63,29 @@ To build and open an app without operating Xcode manually:
 The examples consume the released XCEasy package by default. For adjacent local framework development:
 
 ```bash
-TUIST_XCEASY_USE_LOCAL_PACKAGE=1 mise exec -- tuist generate --no-open
+TUIST_XCEASY_USE_LOCAL_PACKAGE=1 ./scripts/generate.sh --no-open
 ```
 
+## Xcode previews
+
+Select the matching application scheme and open a screen source file, then enable
+Editor → Canvas and press Resume. Preview providers are located alongside all six
+screens in each app and the UIKit promo banner. Authorization, dynamic content,
+and catalog previews include error, loading, expanded, and empty states.
+Shared adapters live in each app's `Sources/PreviewSupport` directory.
+
+Previews use `PreviewProvider` and Debug-only support to retain the iOS 15 deployment
+target. After regenerating the workspace, reopen it if Canvas reports
+`unableToFindTarget`; an old preview session can retain stale target information.
+The generation script resolves a full Xcode installation even when `xcode-select`
+points to Command Line Tools.
+
 ## Run UI tests
+
+On the first build with the released package, Xcode may ask you to trust
+`XCEasyMacroPlugin`. Review the package and enable its macro in Xcode before
+running the command-line tests. A macro trust error stops compilation before
+tests or Allure export can run.
 
 See the [XCEasy Runner guide](docs/en/XCEASY_RUNNER_EN.md) for production configs, Xcode test plans, mixed simulator/physical matrices, signing, and fast state reset.
 

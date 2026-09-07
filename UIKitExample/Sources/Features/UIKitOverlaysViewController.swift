@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 /// Demonstrates system and custom overlay lifecycles.
 final class UIKitOverlaysViewController: UIKitStackViewController {
@@ -85,6 +88,16 @@ final class UIKitOverlaysViewController: UIKitStackViewController {
         }
     }
 }
+
+#if DEBUG
+struct UIKitOverlaysViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        UIKitViewControllerPreview {
+            UIKitOverlaysViewController()
+        }
+    }
+}
+#endif
 
 /// Content of the UIKit bottom sheet.
 private final class UIKitSheetViewController: UIViewController {

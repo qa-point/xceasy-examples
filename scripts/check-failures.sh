@@ -40,7 +40,7 @@ collect_allure_results() {
     cp -R "$runner_report_dir/." "$report_dir/"
 }
 
-TUIST_XCEASY_USE_LOCAL_PACKAGE=${TUIST_XCEASY_USE_LOCAL_PACKAGE:-1} run_tuist generate --no-open
+TUIST_XCEASY_USE_LOCAL_PACKAGE=${TUIST_XCEASY_USE_LOCAL_PACKAGE:-0} run_tuist generate --no-open
 
 for scheme in UIKitExample SwiftUIExample; do
     case "$scheme" in

@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 // MARK: - UIKitScreenViewController
 
@@ -397,3 +400,13 @@ class UIKitScreenViewController: UIViewController {
         return container
     }
 }
+
+#if DEBUG
+struct UIKitScreenViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        UIKitViewControllerPreview {
+            UIKitScreenViewController()
+        }
+    }
+}
+#endif

@@ -46,7 +46,7 @@ mise install
 Сгенерируйте workspace:
 
 ```bash
-mise exec -- tuist generate
+./scripts/generate.sh
 ```
 
 В Xcode выберите схему `UIKitExample` или `SwiftUIExample`, любой доступный iPhone Simulator и нажмите Run. Для экрана Authorization действительные данные: `admin` / `password`.
@@ -61,10 +61,29 @@ mise exec -- tuist generate
 По умолчанию examples используют выпущенный пакет XCEasy. Для разработки с соседним локальным checkout:
 
 ```bash
-TUIST_XCEASY_USE_LOCAL_PACKAGE=1 mise exec -- tuist generate --no-open
+TUIST_XCEASY_USE_LOCAL_PACKAGE=1 ./scripts/generate.sh --no-open
 ```
 
+## Preview в Xcode
+
+Выберите схему приложения и откройте исходный файл экрана. Включите
+Editor → Canvas и нажмите Resume. Preview расположены рядом со всеми шестью
+экранами каждого приложения и UIKit-баннером. Для авторизации, динамического
+контента и каталога добавлены состояния ошибки, загрузки, раскрытой карточки
+и пустой выдачи. Общие адаптеры находятся в `Sources/PreviewSupport` каждого приложения.
+
+Используются `PreviewProvider` и код под `#if DEBUG`, чтобы сохранить поддержку
+iOS 15. Если после генерации workspace Canvas сообщает `unableToFindTarget`,
+переоткройте workspace: старая сессия может хранить устаревшие сведения о target.
+Скрипт генерации сам находит полный Xcode, даже если `xcode-select` указывает
+на Command Line Tools.
+
 ## Запустить UI-тесты
+
+При первой сборке с выпущенным пакетом Xcode может запросить доверие к
+`XCEasyMacroPlugin`. Проверьте пакет и разрешите его макрос в Xcode перед
+запуском тестов из терминала. Ошибка доверия останавливает компиляцию ещё
+до запуска тестов и экспорта Allure.
 
 Production-пример конфигурации XCEasy Runner, Xcode test plans, mixed simulator/physical matrix, signing и быстрый reset state описаны в [гайде по Runner](docs/ru/XCEASY_RUNNER_RU.md).
 

@@ -6,6 +6,26 @@ struct SwiftUIDynamicContentView: View {
     @State private var isCardPresented = false
     @State private var areDetailsPresented = false
 
+#if DEBUG
+    enum PreviewState {
+        case initial
+        case loading
+        case expandedCard
+    }
+
+    init(previewState: PreviewState = .initial) {
+        switch previewState {
+        case .initial:
+            break
+        case .loading:
+            _isLoading = State(initialValue: true)
+        case .expandedCard:
+            _isCardPresented = State(initialValue: true)
+            _areDetailsPresented = State(initialValue: true)
+        }
+    }
+#endif
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Dynamic Content")
@@ -79,3 +99,26 @@ struct SwiftUIDynamicContentView: View {
         }
     }
 }
+
+#if DEBUG
+struct SwiftUIDynamicContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SwiftUIScreenPreview {
+                SwiftUIDynamicContentView()
+            }
+            .previewDisplayName("Initial")
+
+            SwiftUIScreenPreview {
+                SwiftUIDynamicContentView(previewState: .loading)
+            }
+            .previewDisplayName("Loading")
+
+            SwiftUIScreenPreview {
+                SwiftUIDynamicContentView(previewState: .expandedCard)
+            }
+            .previewDisplayName("Expanded Card")
+        }
+    }
+}
+#endif

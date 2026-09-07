@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 /// Searchable deterministic data catalogue used for content assertions.
 final class UIKitProductCatalogViewController: UIKitStackViewController {
@@ -103,3 +106,21 @@ final class UIKitProductCatalogViewController: UIKitStackViewController {
         }
     }
 }
+
+#if DEBUG
+struct UIKitProductCatalogViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            UIKitViewControllerPreview {
+                UIKitProductCatalogViewController()
+            }
+            .previewDisplayName("Populated")
+
+            UIKitViewControllerPreview {
+                emptyCatalogPreview()
+            }
+            .previewDisplayName("Empty")
+        }
+    }
+}
+#endif

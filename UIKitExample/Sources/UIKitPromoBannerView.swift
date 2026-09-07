@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 final class UIKitPromoBannerView: UIView {
     var onClose: (() -> Void)?
@@ -80,3 +83,23 @@ final class UIKitPromoBannerView: UIView {
         onClose?()
     }
 }
+
+#if DEBUG
+struct UIKitPromoBannerView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            UIKitViewPreview {
+                promoBannerPreview(generation: 2)
+            }
+            .previewDisplayName("Light")
+
+            UIKitViewPreview {
+                promoBannerPreview(generation: 2)
+            }
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark")
+        }
+        .previewLayout(.fixed(width: 390, height: 120))
+    }
+}
+#endif

@@ -38,7 +38,7 @@ if [ -z "$device_id" ]; then
 fi
 ensure_simulator_booted "$device_id"
 
-TUIST_XCEASY_USE_LOCAL_PACKAGE=${TUIST_XCEASY_USE_LOCAL_PACKAGE:-1} run_tuist generate --no-open
+TUIST_XCEASY_USE_LOCAL_PACKAGE=${TUIST_XCEASY_USE_LOCAL_PACKAGE:-0} run_tuist generate --no-open
 
 reset_report_dir
 

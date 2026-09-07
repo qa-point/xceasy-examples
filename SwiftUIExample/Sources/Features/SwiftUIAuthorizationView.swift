@@ -8,6 +8,29 @@ struct SwiftUIAuthorizationView: View {
     @State private var isLoading = false
     @State private var isAuthorized = false
 
+#if DEBUG
+    enum PreviewState {
+        case initial
+        case validationError
+        case loading
+    }
+
+    init(previewState: PreviewState = .initial) {
+        switch previewState {
+        case .initial:
+            break
+        case .validationError:
+            _login = State(initialValue: "admin")
+            _password = State(initialValue: "wrong-password")
+            _errorMessage = State(initialValue: "Incorrect login or password.")
+        case .loading:
+            _login = State(initialValue: "admin")
+            _password = State(initialValue: "password")
+            _isLoading = State(initialValue: true)
+        }
+    }
+#endif
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Authorization")
@@ -97,3 +120,26 @@ private struct SwiftUIAuthorizationSuccessView: View {
         .navigationTitle("Success")
     }
 }
+
+#if DEBUG
+struct SwiftUIAuthorizationView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SwiftUIScreenPreview {
+                SwiftUIAuthorizationView()
+            }
+            .previewDisplayName("Initial")
+
+            SwiftUIScreenPreview {
+                SwiftUIAuthorizationView(previewState: .validationError)
+            }
+            .previewDisplayName("Validation Error")
+
+            SwiftUIScreenPreview {
+                SwiftUIAuthorizationView(previewState: .loading)
+            }
+            .previewDisplayName("Loading")
+        }
+    }
+}
+#endif

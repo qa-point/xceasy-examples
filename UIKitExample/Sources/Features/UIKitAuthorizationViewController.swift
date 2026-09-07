@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 /// Deterministic mocked authorization flow with positive and negative states.
 final class UIKitAuthorizationViewController: UIKitStackViewController {
@@ -82,6 +85,29 @@ final class UIKitAuthorizationViewController: UIKitStackViewController {
         return nil
     }
 }
+
+#if DEBUG
+struct UIKitAuthorizationViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            UIKitViewControllerPreview {
+                UIKitAuthorizationViewController()
+            }
+            .previewDisplayName("Initial")
+
+            UIKitViewControllerPreview {
+                authorizationPreview(state: .validationError)
+            }
+            .previewDisplayName("Validation Error")
+
+            UIKitViewControllerPreview {
+                authorizationPreview(state: .loading)
+            }
+            .previewDisplayName("Loading")
+        }
+    }
+}
+#endif
 
 /// Final screen shown after the mocked authorization request succeeds.
 private final class UIKitAuthorizationSuccessViewController: UIViewController {

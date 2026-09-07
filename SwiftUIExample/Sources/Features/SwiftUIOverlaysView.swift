@@ -69,3 +69,13 @@ struct SwiftUIOverlaysView: View {
         }
     }
 }
+
+#if DEBUG
+struct SwiftUIOverlaysView_Previews: PreviewProvider {
+    static var previews: some View {
+        SwiftUIScreenPreview {
+            SwiftUIOverlaysView()
+        }
+    }
+}
+#endif

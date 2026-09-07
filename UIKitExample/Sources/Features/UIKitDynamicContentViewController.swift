@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 /// Demonstrates delayed loading, animation, visibility changes and tree removal.
 final class UIKitDynamicContentViewController: UIKitStackViewController {
@@ -119,3 +122,26 @@ final class UIKitDynamicContentViewController: UIKitStackViewController {
         }
     }
 }
+
+#if DEBUG
+struct UIKitDynamicContentViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            UIKitViewControllerPreview {
+                UIKitDynamicContentViewController()
+            }
+            .previewDisplayName("Initial")
+
+            UIKitViewControllerPreview {
+                dynamicContentPreview(state: .loading)
+            }
+            .previewDisplayName("Loading")
+
+            UIKitViewControllerPreview {
+                dynamicContentPreview(state: .expandedCard)
+            }
+            .previewDisplayName("Expanded Card")
+        }
+    }
+}
+#endif

@@ -1,4 +1,7 @@
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 /// Entry screen for manually exploring all UIKit demonstration features.
 final class UIKitHomeViewController: UIKitStackViewController {
@@ -35,3 +38,13 @@ final class UIKitHomeViewController: UIKitStackViewController {
         contentStack.addArrangedSubview(button)
     }
 }
+
+#if DEBUG
+struct UIKitHomeViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        UIKitViewControllerPreview {
+            UIKitHomeViewController()
+        }
+    }
+}
+#endif

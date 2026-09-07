@@ -128,3 +128,13 @@ struct SwiftUIComponentGalleryView: View {
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
+
+#if DEBUG
+struct SwiftUIComponentGalleryView_Previews: PreviewProvider {
+    static var previews: some View {
+        SwiftUIScreenPreview {
+            SwiftUIComponentGalleryView()
+        }
+    }
+}
+#endif
