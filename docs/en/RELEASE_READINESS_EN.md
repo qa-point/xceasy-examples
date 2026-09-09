@@ -19,6 +19,13 @@ Date: 2026-09-09. Release set: Examples 0.1.1, XCEasy 0.1.3, Runner 0.1.3.
 
 ## Verification boundaries
 
+- A subsequent two-simulator run of the published XCEasy 0.1.3 package through
+  Runner 0.1.3 completed 23 SwiftUI tests: 22 passed and one failed in
+  `SwiftUIOverlaysTests.testToastAppearsAndLeavesTree`. XCUI reported a missing
+  matching snapshot during `assertDoesNotExist` as the toast disappeared.
+  There were no missing or duplicated executions. This is a known intermittent
+  UI-check limitation; the successful full single-simulator run above does not
+  imply all device matrices are green.
 - Intentional failures demonstrate diagnostic artifacts and are not hidden.
 - Automated Canvas JIT rendering verification was not performed.
 - A new machine may need to approve XCEasyMacroPlugin in Xcode.
