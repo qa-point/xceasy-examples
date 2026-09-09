@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Harden public CI, pin GitHub Actions, scan secrets, and document private vulnerability reporting.
+
 ## [0.1.0] - 2026-09-07
 
 - Provide independent UIKit and SwiftUI demonstration apps with Page Objects,
