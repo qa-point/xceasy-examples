@@ -2,7 +2,7 @@ import ProjectDescription
 
 let xceasyPackage: Package = Environment.xceasyUseLocalPackage.getBoolean(default: false)
     ? .local(path: "../xceasy")
-    : .remote(url: "https://github.com/qa-point/xceasy.git", requirement: .exact("0.1.2"))
+    : .remote(url: "https://github.com/qa-point/xceasy.git", requirement: .exact("0.1.3"))
 
 let project = Project(
     name: "XCEasyExamples",

@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## [0.1.1] - 2026-09-09
+
+- Pin the released XCEasy 0.1.3 package and validate both apps with Runner 0.1.3.
+- Build public dependencies without a personal integration token.
 
 - Harden public CI, pin GitHub Actions, scan secrets, and document private vulnerability reporting.
 
