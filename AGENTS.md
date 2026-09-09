@@ -16,3 +16,9 @@ These instructions apply to the entire repository.
 - The supported consumer dependency is the released XCEasy Swift package. `TUIST_XCEASY_USE_LOCAL_PACKAGE=1` is only for adjacent local framework development.
 - Never commit generated projects, workspaces, DerivedData, `.xcresult`, Allure output, or machine-specific files.
 - Run both schemes before claiming the repository is healthy.
+
+## Public distribution and diagnostics
+
+- Follow `docs/en/SECURITY_EN.md`. Keep synthetic test data and useful UI trees/screenshots; do not add blanket masking or disable evidence as an unrelated security cleanup.
+- Public XCEasy dependencies do not require a personal integration token in CI. Keep Actions pinned to commit SHAs and checkout credentials unpersisted.
+- Runner installation instructions belong to `qa-point/xceasy-runner`, which also owns `Formula/xceasyctl.rb` and the Homebrew tap. Link there rather than creating a separate tap repository.
